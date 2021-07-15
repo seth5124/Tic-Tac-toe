@@ -1,0 +1,231 @@
+
+
+@font-face {
+    font-family: Quicksand;
+    src: url("assets/quicksand\ bold.otf") format("opentype");
+}
+* {
+    background-color: rgb(50, 51, 58);
+    font-family: "Quicksand", opentype;
+    color: rgb(201, 199, 199);
+}
+body,
+html {
+    height: 100%;
+    width: 100%;
+}
+.header {
+    text-align: center;
+}
+.mainContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+.scoreBoard {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 30%;
+    width: 40%;
+    flex-direction: row;
+
+    flex-wrap: wrap;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+hr {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.playerBox > * {
+    background-color: transparent;
+}
+.playerBox > h1 {
+    background-color: transparent;
+    font-size: 3.5vh;
+    padding-right: 10px;
+}
+.playerBoxContainer {
+    display: flex;
+    flex-direction: column;
+    max-width: 30%;
+}
+.playerBox {
+    background-color: rgb(117, 120, 134);
+    -webkit-box-shadow: 3px 2px 24px 1px rgba(91, 91, 91, 0.48);
+    box-shadow: 3px 2px 24px 1px rgba(91, 91, 91, 0.48);
+    border-radius: 12px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    margin-top: 15%;
+    z-index: 2;
+}
+.playerBox img {
+    padding-left: 4px;
+}
+.activePlayerBox {
+    background-color: rgba(75, 165, 204, 0.822);
+}
+.dropdown {
+    width: 100%;
+    position: relative;
+    top: -9px;
+    background-color: rgb(117, 120, 134);
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+    display: flex;
+    transition: height 0.2s ease-in;
+    height: 50px;
+    z-index: 1;
+}
+
+.dropdownIcon {
+    background: transparent;
+    padding: 10px;
+    margin: 5px;
+    height: 20px;
+    width: 20%;
+    height: 60%;
+    transition: height 0.2s ease-in;
+}
+.collapsed {
+    height: 0;
+}
+
+.sideMarker {
+    height: 100%;
+    width: 30%;
+    font-size: 3vh;
+    background-color: rgb(117, 120, 134);
+
+    padding-left: 3%;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    margin-right: 0;
+    margin-left: auto;
+    transition: background-color 0.2s ease-in;
+}
+.sideMarker > * {
+    background-color: transparent;
+}
+.activeSide {
+    background-color: rgb(216, 218, 228);
+}
+.pencilIcon {
+    opacity: 30%;
+    padding-right: 3%;
+    padding-left: 3%;
+}
+.pencilIcon:hover {
+    opacity: 80%;
+}
+.nameInput {
+    border: none;
+    border-radius: 5px;
+    height: 2em;
+    margin-right: 5px;
+}
+.hidden{
+    visibility: hidden;
+}
+
+.gameBoard {
+    background-color: rgb(117, 120, 134);
+    -webkit-box-shadow: 3px 5px 16px 7px rgba(91, 91, 91, 0.48);
+    box-shadow: 3px 5px 16px 7px rgba(91, 91, 91, 0.48);
+    border-radius: 5px;
+    width: 40%;
+    height: 70%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+}
+
+.gameBoard > div {
+    width: 32%;
+    height: 32%;
+    background-color: rgb(180, 182, 192);
+    margin: 0.5%;
+    border-radius: 4px;
+    user-select: none;
+    -webkit-user-drag: none;
+    transition: 0.1s;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    -webkit-box-shadow: 3px 5px 16px 7px rgba(91, 91, 91, 0.48);
+    box-shadow: 3px 5px 16px 7px rgba(91, 91, 91, 0.48);
+}
+.gameBoard > div:hover {
+    transform: scale(1.03);
+}
+.gameBoard img {
+    background: transparent;
+    width: 60%;
+    height: 60%;
+    animation: fadeIn 0.2s linear;
+}
+@media screen and (max-width: 1300px) {
+    .header {
+        display: none;
+    }
+    .playerBox > h1 {
+        font-size: 2vh;
+    }
+    .sideMarker {
+        font-size: 2vh;
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+@keyframes dropdown {
+    0% {
+        height: 0;
+    }
+    100% {
+        height: 1;
+    }
+}
+@keyframes colorChangeActive {
+}
+.gameBoard h1 {
+    background-color: transparent;
+    justify-content: center;
+    align-items: center;
+    color: rgb(44, 44, 44);
+    animation-name: fadeIn;
+    animation-duration: 1s;
+    height: fit-content;
+
+}
+.computerIcon {
+    opacity: 30%;
+}
+
+.disabled {
+    pointer-events: none;
+}
+.active {
+    opacity: 100%;
+}
