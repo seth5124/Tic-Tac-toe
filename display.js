@@ -6,15 +6,15 @@ import * as game from './game.js';
 
 
 
-window.onload = () => {
-  displayController.initializeBoard();
-  displayController.initializePlayerDisplay();
-  game.initializeGame();
-};
+// window.onload = () => {
+//   displayController.initializeBoard();
+//   displayController.initializePlayerDisplay();
+//   game.initializeGame();
+// };
 /**
  * Handles all display elements
  */
-const displayController = (() => {
+
   let squares = [];
   let playerDisplays = [];
 
@@ -29,14 +29,13 @@ const displayController = (() => {
 
     let letterImg = document.createElement("img");
     letterImg.setAttribute("src", letter == "X" ? xSrc : oSrc);
-    console.log(letterImg);
     return letterImg;
   };
 
   /**
    * Initializes the UI board, and grabs all necessary DOM elements to do so.
    */
-  const initializeBoard = () => {
+  export function initializeBoard(){
     const boardDiv = document.getElementById("board");
     const squareDivs = boardDiv.getElementsByTagName("div");
     squares = Array.prototype.slice.call(squareDivs, 0); //Takes an  HTML collection and converts to Array
@@ -60,6 +59,8 @@ const displayController = (() => {
     const resetButton = document.getElementById("resetButton");
     resetButton.addEventListener("click", () => {
       game.reset();
+      board.resetBoard();
+      updateBoard();
     });
   };
 
@@ -82,7 +83,7 @@ const displayController = (() => {
    * Initializes all player management functions
    * Including name displays, name edits, active player display, and AI toggling
    */
-  const initializePlayerDisplay = () => {
+  export function initializePlayerDisplay(){
     //Grabbing UI elements from each player display
     let firstPlayerDisplay = {
       player: game.getFirstPlayer(),
@@ -174,6 +175,7 @@ const displayController = (() => {
    *
    */
   const inputSquare = (square) => {
+    //Checks if the square has already been taken
     if (square.firstChild) {
       return;
     }
@@ -187,7 +189,7 @@ const displayController = (() => {
   /**
    * Updates UI board based on board data
    */
-  const updateBoard = () => {
+  export function updateBoard(){
     //Iterates through each row and column
     let squareIndex = 0;
     for (let row = 0; row < board.getRows().length; row++) {
@@ -213,16 +215,10 @@ const displayController = (() => {
   /**
    * Switches the highlighted UI element denoting the active player
    */
-  const switchActivePlayerMarker = () => {
+  export function switchActivePlayerMarker(){
     playerDisplays.forEach((display) => {
       display.sideMarker.classList.toggle("activeSide");
     });
   };
-  return {
-    initializeBoard,
-    initializePlayerDisplay,
-    switchActivePlayerMarker,
-    updateBoard,
-    resetActivePlayerMarker
-  };
-})();
+
+

@@ -5,6 +5,8 @@
      */
     
     import * as board from './board.js';
+    import * as game from './game.js';
+    import * as display from './display.js';
 
     export function decideMove(AISide){
       
@@ -78,7 +80,7 @@
      * Checks each column for a win
      */
     function columnsHaveAWin(playerSide, enemySide){
-      returnRow = false;
+      let returnRow = false;
       board.getColumns().forEach((column, index) => {
         let possibleWin = possibleWinInRow(column, playerSide, enemySide);
         if (possibleWin || possibleWin === 0) {
@@ -126,11 +128,13 @@
     export function initializeAI(){
       //If the active player is AI controlled, it makes an AI move
       document.addEventListener("playerSwitch", () => {
-        if (getActivePlayer().isAIControlled) {
+        if (game.getActivePlayer().isAIControlled) {
           if (!game.gameIsOver()) {
             setTimeout(() => {
-              let AImove = AI.decideMove(getActivePlayer().side,getActivePlayer().side == "X" ? "O" : "X");
-              makeMove(AImove[0], AImove[1], getActivePlayer().side);
+              let AImove = decideMove(game.getActivePlayer().side,game.getActivePlayer().side == "X" ? "O" : "X");
+              game.makeMove(AImove[0], AImove[1], game.getActivePlayer().side);
+              display.updateBoard();
+              display.switchActivePlayerMarker();
             }, 250);
           }
         }

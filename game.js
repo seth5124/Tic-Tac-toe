@@ -1,5 +1,4 @@
 
-    import * as AI from './AI.js';
     import * as board from './board.js';
 
     const firstPlayer = {
@@ -24,26 +23,13 @@
     const switchActivePlayer = () => {
       activePlayer = activePlayer == firstPlayer ? secondPlayer : firstPlayer;
       document.dispatchEvent(new Event("playerSwitch"));
-      console.log('Fired switch event!');
     };
   
     /**
      * Initializes the event listener necessary for the AI to know when to move.
      * Listens for the "PlayerSwitch" event
      */
-    const initializeGame = () => {
-      //If the active player is AI controlled, it makes an AI move
-      document.addEventListener("playerSwitch", () => {
-        if (getActivePlayer().isAIControlled) {
-          if (gameIsOver()) {
-            setTimeout(() => {
-              let AImove = AI.decideMove(getActivePlayer().side,getActivePlayer().side == "X" ? "O" : "X");
-              makeMove(AImove[0], AImove[1], getActivePlayer().side);
-            }, 250);
-          }
-        }
-      });
-    };
+
   
     /**
      * Toggles AI control on or off for the given player
@@ -99,7 +85,7 @@
     /**
      * Checks if a player has won the game
      *
-     * @param {Letter} side Will check for a 3-in-a-Row of this letter
+     * @param {Letter} side Will check for a full row of this letter
      */
     const checkWin = function (side) {
       let won = false;
@@ -108,7 +94,7 @@
         if (row.every((square) => square == side && !won)) {
           won = true;
           win(side);
-          return;
+          return won;
         }
       });
       //Checks columns
@@ -116,7 +102,7 @@
         if (column.every((square) => square == side && !won)) {
           won = true;
           win(side);
-          return;
+          return won;
         }
       });
   
@@ -125,7 +111,7 @@
         if (diagonal.every((square) => square == side && !won)) {
           won = true;
           win(side);
-          return;
+          return won;
         }
       });
   
@@ -142,6 +128,7 @@
       alert(side + " wins!");
       setGameOver(true);
       setTimeout(reset);
+      document.dispatchEvent(new Event('reset'));
     };
     /**
      * Called when there is a tie
@@ -149,22 +136,22 @@
     const tie = () => {
       alert("Tie!");
       setTimeout(reset, 99);
+      document.dispatchEvent(new Event('reset'));
     };
     /**
      * Resets board data to all empty strings. Also resets all display elements to default
      */
     const reset = () => {
       board.resetBoard();
-      displayController.updateBoard();
       resetActivePlayer();
-      displayController.resetActivePlayerMarker();
       setGameOver(false);
       moveCount = 0;
       document.dispatchEvent(new Event("playerSwitch"));
+
+
     };
   
     export {
-      initializeGame,
       checkWin,
       reset,
       makeMove,
