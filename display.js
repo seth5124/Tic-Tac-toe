@@ -67,7 +67,7 @@ import * as game from './game.js';
   /**
    * Sets active player marker back to the first player
    */
-  const resetActivePlayerMarker = () => {
+  export function resetActivePlayerMarker(){
     playerDisplays.forEach((display) => {
       if (
         display.sideMarker.getElementsByTagName("h1")[0].innerHTML ==

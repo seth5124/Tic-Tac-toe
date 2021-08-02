@@ -10,6 +10,7 @@ display.initializePlayerDisplay();
 document.addEventListener('reset', ()=>{
     game.reset();
     display.updateBoard();
+    display.resetActivePlayerMarker();
 })
 
 
