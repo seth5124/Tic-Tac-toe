@@ -2,7 +2,7 @@
   "name": "tic-tac-toe",
   "version": "1.0.0",
   "description": "tic tac toe game",
-  "main": "display.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
