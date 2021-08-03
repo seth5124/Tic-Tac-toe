@@ -129,14 +129,16 @@
       //If the active player is AI controlled, it makes an AI move
       document.addEventListener("playerSwitch", () => {
         if (game.getActivePlayer().isAIControlled) {
-          if (!game.gameIsOver()) {
+          
             setTimeout(() => {
+              if (!game.gameIsOver()) {
               let AImove = decideMove(game.getActivePlayer().side,game.getActivePlayer().side == "X" ? "O" : "X");
               game.makeMove(AImove[0], AImove[1], game.getActivePlayer().side);
               display.updateBoard();
               display.switchActivePlayerMarker();
+              }
             }, 250);
-          }
+          
         }
       });
     };

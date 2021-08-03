@@ -4,17 +4,6 @@ import * as game from './game.js';
 //TODO: add name property to players, add functionality to set name
 //TODO: Possibly add a congratulatory message upon winning
 
-
-
-// window.onload = () => {
-//   displayController.initializeBoard();
-//   displayController.initializePlayerDisplay();
-//   game.initializeGame();
-// };
-/**
- * Handles all display elements
- */
-
   let squares = [];
   let playerDisplays = [];
 
@@ -58,9 +47,9 @@ import * as game from './game.js';
     //Adds listener to reset button to reset the game
     const resetButton = document.getElementById("resetButton");
     resetButton.addEventListener("click", () => {
-      game.reset();
-      board.resetBoard();
-      updateBoard();
+      document.dispatchEvent(new Event('reset'));
+      // board.resetBoard();
+      // updateBoard();
     });
   };
 

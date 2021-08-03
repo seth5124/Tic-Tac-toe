@@ -25,11 +25,6 @@
       document.dispatchEvent(new Event("playerSwitch"));
     };
   
-    /**
-     * Initializes the event listener necessary for the AI to know when to move.
-     * Listens for the "PlayerSwitch" event
-     */
-
   
     /**
      * Toggles AI control on or off for the given player
@@ -58,15 +53,26 @@
      * @param {Side} side Letter to be input
      */
     const makeMove = (row, column, side) => {
+      if(gameIsOver()){
+        return;
+      }
       board.inputSquare(row, column, side);
       incrementMoveCount();
       switchActivePlayer();
-      setTimeout(() => {
-        checkWin(side);
-        //Delayed this for browser compatibility
-        //Was not showing the last letter sometimes in Edge and Chrome
-      }, 20);
-    };
+        if(checkWin(side)){
+          setTimeout(()=>{
+            win(side);
+            document.dispatchEvent(new Event('reset'));
+          },0);
+        }
+        else if(checkTie()){
+          setTimeout(()=>{
+            tie();
+            document.dispatchEvent(new Event('reset'));
+          },0);
+        }
+      }
+      
   
     const resetActivePlayer = () => {
       activePlayer = firstPlayer;
@@ -93,16 +99,12 @@
       board.getRows().forEach((row) => {
         if (row.every((square) => square == side && !won)) {
           won = true;
-          win(side);
-          return won;
         }
       });
       //Checks columns
       board.getColumns().forEach((column) => {
         if (column.every((square) => square == side && !won)) {
           won = true;
-          win(side);
-          return won;
         }
       });
   
@@ -110,16 +112,16 @@
       board.getDiagonals().forEach((diagonal) => {
         if (diagonal.every((square) => square == side && !won)) {
           won = true;
-          win(side);
-          return won;
         }
       });
   
-      //Ties after max amount of moves
-      if (moveCount >= 9 && !won) {
-        tie();
-      }
+      return won;
     };
+    const checkTie = () =>{
+      if (moveCount >= 9) {
+        return true;
+      }
+    }
     /**
      * Called when a player wins
      * @param {Letter} side Side that has won
@@ -127,15 +129,13 @@
     const win = (side) => {
       alert(side + " wins!");
       setGameOver(true);
-      setTimeout(reset);
-      document.dispatchEvent(new Event('reset'));
     };
     /**
      * Called when there is a tie
      */
     const tie = () => {
       alert("Tie!");
-      setTimeout(reset, 99);
+     setGameOver(true);
       document.dispatchEvent(new Event('reset'));
     };
     /**
@@ -144,11 +144,11 @@
     const reset = () => {
       board.resetBoard();
       resetActivePlayer();
-      setGameOver(false);
       moveCount = 0;
-      document.dispatchEvent(new Event("playerSwitch"));
-
-
+      document.dispatchEvent(new Event("playerSwitch"))
+      setTimeout(()=>{
+        setGameOver(false);
+      },0);
     };
   
     export {
