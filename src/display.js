@@ -1,5 +1,6 @@
 import * as board from './board.js';
 import * as game from './game.js';
+
 //TODO: Set alert to player name instead of letter
 //TODO: add name property to players, add functionality to set name
 //TODO: Possibly add a congratulatory message upon winning
@@ -13,8 +14,8 @@ import * as game from './game.js';
    * @returns {Node} an img element containing the SVG image of the reqested letter
    */
   const getLetterSVG = (letter) => {
-    let xSrc = "assets/x.svg";
-    let oSrc = "assets/o.svg";
+    let xSrc = "src/assets/x.svg";
+    let oSrc = "src/assets/o.svg";
 
     let letterImg = document.createElement("img");
     letterImg.setAttribute("src", letter == "X" ? xSrc : oSrc);
