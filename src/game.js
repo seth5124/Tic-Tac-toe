@@ -63,13 +63,13 @@
           setTimeout(()=>{
             win(side);
             document.dispatchEvent(new Event('reset'));
-          },0);
+          },100);
         }
         else if(checkTie()){
           setTimeout(()=>{
             tie();
             document.dispatchEvent(new Event('reset'));
-          },0);
+          },100);
         }
       }
       
