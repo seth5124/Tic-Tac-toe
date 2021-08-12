@@ -14,8 +14,8 @@ import * as game from './game.js';
    * @returns {Node} an img element containing the SVG image of the reqested letter
    */
   const getLetterSVG = (letter) => {
-    let xSrc = "src/assets/x.svg";
-    let oSrc = "src/assets/o.svg";
+    let xSrc = require("./assets/x.svg");
+    let oSrc = require("./assets/o.svg");
 
     let letterImg = document.createElement("img");
     letterImg.setAttribute("src", letter == "X" ? xSrc : oSrc);

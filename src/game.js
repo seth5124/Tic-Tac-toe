@@ -47,7 +47,7 @@
     };
   
     /**
-     * Writes a move to board data
+     * Writes a move to board data, switches the active player, checks for a win, then fires win or tie function if conditions are met
      * @param {Index} row Row index of the requested move
      * @param {Index} column Column index of the requested move
      * @param {Side} side Letter to be input

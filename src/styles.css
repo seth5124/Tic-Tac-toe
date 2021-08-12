@@ -1,12 +1,12 @@
 
 
- /* @font-face {
+ @font-face {
     font-family: Quicksand;
     src: url("assets/quicksand\ bold.otf") format("opentype");
-} */
+}
 * {
     background-color: rgb(50, 51, 58);
-    /* font-family: "Quicksand", opentype; */
+    font-family: "Quicksand", opentype;
     color: rgb(201, 199, 199);
 }
 body,
