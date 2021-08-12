@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Tic-Tac-Toe</title>
+        <!-- <link rel="stylesheet" href="./src/styles.css"> -->
+    </head>
+    <body>
+        <div class='mainContent'>
+            <div class='scoreBoard'>
+                <div class='playerBoxContainer'>
+                    <div class='playerBox' id='player1Box'>
+                        <img id='player1Dots' class='hidden'src='./assets/dots.svg'>
+                        <h1>Player 1</h1>
+                        
+                        <div class='sideMarker activeSide' id='sideMarkerTop'><h1>X</h1></div>
+
+                    </div>
+                    <div class='dropdown collapsed' id='player1Dropdown'>
+                        <img src="./assets/pencil.svg" 
+                        width='10%'
+                        height='60%'
+                        class='pencilIcon dropdownIcon collapsed'
+                        id='player1Edit'/>
+                        <img src="./assets/computer.svg" width='10%'
+                            height='60%'
+                            class ='computerIcon dropdownIcon collapsed'
+                            id='aiToggle1'
+                        >
+                    </div>
+
+
+
+            </div>
+            <h1 class='header'>Tic Tac Toe</h1> 
+            <div class='playerBoxContainer'>
+                <div class='playerBox' id='player2Box'>
+                   
+                    <img id='player2Dots' class='hidden' src='./assets/dots.svg'>
+                    <h1>Player 2</h1>
+
+                    <div class='sideMarker' id='sideMarkerBottom'><h1>O</h1></div>
+                </div>
+                <div class='dropdown collapsed' id='player2Dropdown'>
+                    <img src="./assets/pencil.svg"
+                    width='10%'
+                     height='60%'
+                     class='pencilIcon dropdownIcon collapsed'
+                     id='player2Edit'/>
+                     <img src="./assets/computer.svg" width='10%'
+                     height='60%'
+                     class ='computerIcon dropdownIcon active collapsed'
+                     id='aiToggle2'
+                     >
+
+                </div>
+            </div>
+        </div>
+        <div class='gameBoard' id='board'>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div> 
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        </div>
+        <button type='button' id='resetButton'>Reset</button>
+    
+    </body>
+</html>
